@@ -28,46 +28,46 @@ struct nodo{
 };
 
 //devuelve un nodo:
-nodo create_node(int valor_nodo){
+nodo* create_node(int valor_nodo){
     nodo* nuevo_nodo = new nodo;
     nuevo_nodo -> valor = valor_nodo;
     nuevo_nodo  -> siguiente = nullptr;
-    return *nuevo_nodo;
+    return nuevo_nodo;
 }
 
 //Inserta un nodo al principio:
 void push_front(nodo*& head, int valor_nodo){
     nodo* nuevo_nodo = create_node(valor_nodo);
-    nuevo_nodo -> valor = valor_nodo;
     nuevo_nodo -> siguiente = head;
+    head = nuevo_nodo;
     return;
 }
 
 //Inserta al final
 void push_back(nodo*& head, int valor_nodo){
     nodo* nuevo_nodo = create_node(valor_nodo);
-    nuevo_nodo -> valor = valor_nodo;
 
-    if(nuevo_nodo == nullptr){
-        nuevo_nodo = head;
+    if (head == nullptr){
+        head = nuevo_nodo;
         return;
     }
-    else{
-        nodo* nodo_temp = head;
-        while(nodo_temp != nullptr){
-            nodo_temp = nodo_temp -> siguiente;
-        }
-        nuevo_nodo = nodo_temp;
-        return;
+    
+    nodo* nodo_temp = head;
+    while(nodo_temp != nullptr){
+        nodo_temp = nodo_temp -> siguiente;
     }
+    nuevo_nodo = nodo_temp;
+    return;
 }
 
 
-void insert(node*& head, int posicion, int valor_nodo){
+
+void insert(nodo*& head, int posicion, int valor_nodo){
 
     nodo* nuevo_nodo = create_node(valor_nodo);
 
     if(posicion == 0 || head == nullptr){
+        nuevo_nodo -> siguiente = head;
         head = nuevo_nodo;
         return;
     }
@@ -80,47 +80,78 @@ void insert(node*& head, int posicion, int valor_nodo){
         posicion_nodo ++;
     }
     
-    nuevo_nodo = nodo_temp;
+    nuevo_nodo -> siguiente = nodo_temp -> siguiente;
+    nodo_temp -> siguiente = nuevo_nodo;
     return;
 
 }
 
 
-void erase(int valor_nodo, node*& head, int posicion){
-    
-    node* nodo_a_borrar = head;
-    
+
+void erase(nodo*& head, int posicion){
+        
     if(head == nullptr){
         return;    
     }
+
+    nodo* nodo_a_borrar = head;
 
     if(posicion == 0){
         head = head -> siguiente;
         delete nodo_a_borrar;
         return;
     }
-    else{
-        int contador = 0;
-        while(contador < posicion && nodo_a_borrar -> siguiente != nullptr){
-            nodo_a_borrar = nodo_a_borrar -> siguiente; 
-            contador++;
-        }
-        if(nodo_a_borrar -> siguiente == nullptr){
-            nodo_a_borrar = nodo_a_borrar;
-        }
-        delete nodo_a_borrar;
-        return; 
+
+    nodo* prev = nullptr;
+    int contador = 0;
+        
+    while(contador < posicion && nodo_a_borrar != nullptr){
+        prev = nodo_a_borrar;
+        nodo_a_borrar = nodo_a_borrar -> siguiente; 
+         contador++;
+    }
+    
+    if(nodo_a_borrar == nullptr){
+        cout << "La posicion ingresada es mayor que el tamaño de la lista, por lo tanto eliminamos el ultimo nodo" << endl;
+        return;
+    }
+        
+    prev -> siguiente = nodo_a_borrar -> siguiente;
+    delete nodo_a_borrar; 
     }
 
-}
+
 
 void print_list(nodo*& head){
-    if(head == nullptr){return;}
-    nodo_presente = head;
+    if(head == nullptr){
+        cout<<"lista vacia" << endl;
+        return;
+    }
+    nodo* nodo_presente = head;
     while(nodo_presente != nullptr){
-        printf(nodo_presente + "->");
+        cout << nodo_presente->valor << "->";
         nodo_presente = nodo_presente -> siguiente;
     }
-    cout << NULL << endl;
+    cout << "NULL" << endl;
     return;
+}
+
+int main(){
+    nodo* nodo1 = nullptr;
+    push_front(nodo1, 3);
+    push_front(nodo1, 2);
+    push_front(nodo1, 1);
+
+    push_back(nodo1, 4);
+    push_back(nodo1, 5);
+
+    insert(nodo1, 2, 99);
+
+    print_list(nodo1);
+
+    erase (nodo1, 3);
+
+    print_list(nodo1);
+
+    return 0;
 }
