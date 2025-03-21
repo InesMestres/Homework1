@@ -84,6 +84,25 @@ void logMessage(string mensaje_de_acceso, string nombre_de_usuario){
 
 }
 
+//Ejercicio2 parte4:
+int captura_error(){ 
+    try{
+        int x = -100;
+        if(x < 0){
+            throw "raiz de numero negativo";
+        }
+        int raiz_x = sqrt(x);
+        cout << "El resultado es" << raiz_x << endl;
+    }
+    catch(const char* e){
+        cout << "Error." << endl;
+        logMessage((string)e, 4);
+        return 1;
+    }
+    return 0; 
+}
+
+
 int main(){
     //Ejercicio a:
     logMessage("Se hace un debug", 1);
@@ -97,23 +116,4 @@ int main(){
 
     //Ejercicio b, parte2:
     logMessage("Soy un string de acceso de usuario", "ines_mestres");
- 
-    //Demuestro que puede capturar un error en runtime:
-    
-    int captura_error(){ 
-        try{
-            int x = -100;
-            if(x < 0){
-                throw "raiz de numero negativo";
-            }
-            int raiz_x = sqrt(x);
-            cout << "El resultado es" << raiz_x << endl;
-        }
-        catch(const char* e){
-            cout << "Error." << endl;
-            logMessage((string)e, 4);
-            return1;
-        }
-        return 0; 
-    }
 }
