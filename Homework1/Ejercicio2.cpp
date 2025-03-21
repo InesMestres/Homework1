@@ -58,7 +58,7 @@ requerida y que además demuestre que puede capturar un error en runtime,
 crear una entrada en el log y después detener la ejecución del programa y salir
 del mismo con un código de error (return 1)*/
 
-void logMessage(string mensaje, string archivo = "", int linea_codigo = 0){
+void logMessage(string mensaje, string archivo, int linea_codigo){
     ofstream logFile("log.txt", ios::app);
     if (logFile.is_open()){
         if(!mensaje.empty()){
@@ -67,9 +67,7 @@ void logMessage(string mensaje, string archivo = "", int linea_codigo = 0){
         if(!archivo.empty()){
             logFile << ";" << archivo << endl;
         }
-        if(linea_codigo != NULL){
-            logFile << ";" << linea_codigo << endl;
-        }
+        logFile << ";" << linea_codigo << endl;
         logFile.close();
         return; }
     else{return;}
@@ -109,11 +107,13 @@ int main(){
     logMessage("Busqueda de información", 2);
     logMessage("Warning de codigo", 3);
     logMessage("Error de código", 4);
-    logMessage("Critical error de código", 4);
+    logMessage("Critical error de código", 5);
 
     //Ejercicio b, parte1: :
     logMessage("Soy un string de mensaje personalizado", "archivo.txt", 10);
 
     //Ejercicio b, parte2:
     logMessage("Soy un string de acceso de usuario", "ines_mestres");
+    captura_error();
+    return 0;
 }

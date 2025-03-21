@@ -1,0 +1,36 @@
+[DEBUG]Se hace un debug
+[INFO]Busqueda de información
+[WARNING]Warning de codigo
+[ERROR]Error de código
+[ERROR]Critical error de código
+[ERROR] Soy un string de mensaje personalizado
+;archivo.txt
+;10
+[DEBUG]Se hace un debug
+[INFO]Busqueda de información
+[WARNING]Warning de codigo
+[ERROR]Error de código
+[ERROR]Critical error de código
+[ERROR] Soy un string de mensaje personalizado
+;archivo.txt
+;10
+[SECURITY] Soy un string de acceso de usuario; usuario: ines_mestres
+[DEBUG]Se hace un debug
+[INFO]Busqueda de información
+[WARNING]Warning de codigo
+[ERROR]Error de código
+[CRITICAL]Critical error de código
+[ERROR] Soy un string de mensaje personalizado
+;archivo.txt
+;10
+[SECURITY] Soy un string de acceso de usuario; usuario: ines_mestres
+[DEBUG]Se hace un debug
+[INFO]Busqueda de información
+[WARNING]Warning de codigo
+[ERROR]Error de código
+[CRITICAL]Critical error de código
+[ERROR] Soy un string de mensaje personalizado
+;archivo.txt
+;10
+[SECURITY] Soy un string de acceso de usuario; usuario: ines_mestres
+[ERROR]raiz de numero negativo
