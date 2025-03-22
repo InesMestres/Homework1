@@ -53,13 +53,11 @@ void push_back(nodo*& head, int valor_nodo){
     }
     
     nodo* nodo_temp = head;
-    while(nodo_temp != nullptr){
+    while(nodo_temp -> siguiente != nullptr){
         nodo_temp = nodo_temp -> siguiente;
     }
-    nuevo_nodo = nodo_temp;
-    return;
+    nodo_temp -> siguiente = nuevo_nodo;
 }
-
 
 
 void insert(nodo*& head, int posicion, int valor_nodo){
@@ -94,31 +92,35 @@ void erase(nodo*& head, int posicion){
         return;    
     }
 
-    nodo* nodo_a_borrar = head;
-
     if(posicion == 0){
+        nodo* nodo_temp = head;
         head = head -> siguiente;
-        delete nodo_a_borrar;
+        delete nodo_temp;
         return;
     }
 
-    nodo* prev = nullptr;
+    nodo* nodo_presente = head;
     int contador = 0;
         
-    while(contador < posicion && nodo_a_borrar != nullptr){
-        prev = nodo_a_borrar;
-        nodo_a_borrar = nodo_a_borrar -> siguiente; 
+    while(contador < posicion - 1 && nodo_presente != nullptr){
+        nodo_presente = nodo_presente -> siguiente; 
          contador++;
     }
     
-    if(nodo_a_borrar == nullptr){
+    if(nodo_presente == nullptr || nodo_presente->siguiente == nullptr){
         cout << "La posicion ingresada es mayor que el tamaño de la lista, por lo tanto eliminamos el ultimo nodo" << endl;
         return;
     }
         
-    prev -> siguiente = nodo_a_borrar -> siguiente;
+    nodo* nodo_a_borrar = nodo_presente -> siguiente;
+    nodo_presente -> siguiente = nodo_a_borrar -> siguiente;
     delete nodo_a_borrar; 
     }
+
+
+
+
+
 
 
 
