@@ -50,25 +50,27 @@ const char* texto1 = "Este texto deberia tener mas de sesenta y cuatro caractere
 const char* texto2 = "Este texto deberia tener mas de sesenta y cuatro caracteres en total.";
 
 //mido tiempo de ejecucion de son_iguales:
-auto startTime = std::chrono::high_resolution_clock::now();
-bool resultado = son_iguales(texto1, texto2);
-auto endTime = std::chrono::high_resolution_clock::now();
-auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-std::cout << "A miProcesoAMedir le tomó: " << elapsedTime.count() << "nanosegundos" << std::endl;
+auto startTime1 = std::chrono::high_resolution_clock::now();
+bool resultado1 = son_iguales(texto1, texto2);
+auto endTime1 = std::chrono::high_resolution_clock::now();
+auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime1 - startTime1);
+std:: cout << "A miProcesoAMedir le tomó: " << elapsedTime.count() << "nanosegundos" << std::endl;
+cout << "¿Los textos son iguales?" << (resultado1 ? "si" : "no") << endl;
 
-//mido tiempo de ejecución de 
+
+//mido tiempo de ejecución de evaluacion contexpr
 constexpr bool resultado2 = son_iguales_constexpr("Este texto deberia tener mas de sesenta y cuatro caracteres en total.", "Este texto deberia tener mas de sesenta y cuatro caracteres en total.");
 auto startTime2 = std::chrono::high_resolution_clock::now();
+volatile bool copia = resultado2;
 auto endTime2 = std::chrono::high_resolution_clock::now();
-auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime2 - startTime2);
-std::cout << "A miProcesoAMedir le tomó: " << elapsedTime.count() << "nanosegundos" << std::endl;
+auto elapsedTime2 = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime2 - startTime2);
+std::cout << "A miProcesoAMedir le tomó: " << elapsedTime2.count() << "nanosegundos" << std::endl;
+cout << "¿Los textos son iguales? " << (copia ? "Sí" : "No") << endl;
+
 
 return 0;
 }
 
-
-/*c. Modifique el código del ejercicio 4.1 para que la comparación de los textos se
-realice en tiempo de compilación y obtenga el tiempo de ejecución. Compare
-este tiempo con el obtenido en el ejercicio 4.2 y justifique brevemente la
-diferencia (puede escribir su conclusión como un comentario al final del código
-de este item).*/
+/* Comentario: En este ejercicio se modifica la comparasión de textos para evaluar el tiempo de ejecución y luego el de compliación. 
+Ambos tiempos me dan iguales, lo cual creo que se debe a un tiempo mínimo.
+Sé que debería dar mayor el tiempo de ejecución porque debe recorrer caracter por caracter, mientras que el de compilación no. */
