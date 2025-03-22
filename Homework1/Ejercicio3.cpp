@@ -6,28 +6,16 @@
 #include <math.h>
 using namespace std;
 
-/*3. Implemente una lista enlazada que utilice nodos que simplemente contengan un
-valor y una dirección de memoria de un nodo. Adicionalmente, agregue las siguientes
-funciones para manejar la lista:
-i. create_node(): devuelve un nodo.
-ii. push_front(): inserta un nodo al frente de la lista.
-iii. push_back(): inserta un nodo al final de la lista.
-iv. insert(): inserta un nodo en la posición que se le pase a la función. Si se le pasa
-una posición mayor al largo de la lista, se debe indicar lo ocurrido y se debe de
-agregar el nodo al final de la lista.
-v. erase(): borra un nodo en la posición que se le pase a la función. Similar a la
-función insert(), si la posición es mayor que el largo de la lista, se debe de borrar
-el último nodo.
-vi. print_list(): imprime la lista completa, separando el valor en cada nodo con “->”.
-Presentar ejemplos que verifiquen el funcionamiento requerido en las funciones i-vi y,
-muy importante para el ejercicio, sólo utilizar smart pointers.*/
+//Ejercicio 3
 
 struct nodo{
     int valor;
     nodo* siguiente;
 };
 
-//devuelve un nodo:
+/*Devuelve un nuevo nodo.
+Parametro: valor_nodo: valor que le damos al nodo
+Retorna nodo*/
 nodo* create_node(int valor_nodo){
     nodo* nuevo_nodo = new nodo;
     nuevo_nodo -> valor = valor_nodo;
@@ -35,7 +23,9 @@ nodo* create_node(int valor_nodo){
     return nuevo_nodo;
 }
 
-//Inserta un nodo al principio:
+/*Inserta un nodo al inicio de la lista
+Parametros: head(nodo): puntero a lista, valor_nodo(int): valor asignado al nodo
+Retorna: vacio*/
 void push_front(nodo*& head, int valor_nodo){
     nodo* nuevo_nodo = create_node(valor_nodo);
     nuevo_nodo -> siguiente = head;
@@ -43,7 +33,9 @@ void push_front(nodo*& head, int valor_nodo){
     return;
 }
 
-//Inserta al final
+/*Inserta un nodo al final
+Parametros: head(nodo): puntero a lista, valor_nodo(int): valor asignado al nodo
+Retorna:*/
 void push_back(nodo*& head, int valor_nodo){
     nodo* nuevo_nodo = create_node(valor_nodo);
 
@@ -60,6 +52,13 @@ void push_back(nodo*& head, int valor_nodo){
 }
 
 
+/*Inserta nodo en una posicion indicada
+Parametros: 
+head(nodo): puntero a lista
+posicion(int): numero de posicion dentro de la lista
+valor_nodo(int): valor que se le asigna al nodo
+Retorna: vacio
+*/
 void insert(nodo*& head, int posicion, int valor_nodo){
 
     nodo* nuevo_nodo = create_node(valor_nodo);
@@ -84,8 +83,12 @@ void insert(nodo*& head, int posicion, int valor_nodo){
 
 }
 
-
-
+/*Borra un nodo en na posicion indicada
+Parametros: 
+head(nodo*): puntero al nodo
+posicion(int): posicion en la que se borra el nodo
+Retorna vacío
+*/
 void erase(nodo*& head, int posicion){
         
     if(head == nullptr){
@@ -117,6 +120,10 @@ void erase(nodo*& head, int posicion){
     delete nodo_a_borrar; 
     }
 
+/*Imprime la lista enlazada
+Parametros: 
+head (nodo*): puntero a la lista
+Retorna: vacio*/
 
 void print_list(nodo*& head){
     if(head == nullptr){
@@ -131,6 +138,8 @@ void print_list(nodo*& head){
     cout << "NULL" << endl;
     return;
 }
+
+//Para verificar todas las operaciones: 
 
 int main(){
     nodo* nodo1 = nullptr;

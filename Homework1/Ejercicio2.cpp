@@ -6,20 +6,15 @@
 #include <math.h>
 using namespace std;
 
+//Ejercicio 2
 
-/*2. En muchos sistemas, es importante registrar todo lo que sucede mientras están en funcionamiento. Para ello, se 
-utiliza un sistema de log que almacena los eventos relevantes. Cada evento recibe una etiqueta que indica su nivel de 
-importancia o gravedad. Las etiquetas más comunes son: DEBUG, INFO, WARNING, ERROR y CRITICAL.
+//Parte a 
 
-a. En este ejercicio, se pide crear un sistema log que permite agregar entradas a un archivo mediante el llamado a una 
-función logMessage definida en pseudo código de la siguiente manera:
-void logMessage(String mensaje, Integer/Otro NivelSeveridad)
-Donde NivelSeveridad corresponderá con unas de las leyendas previamente mencionadas. 
-El formato esperado en una línea del archivo de log es el siguiente:
-[ERROR] <Mensaje>
-[INFO] <Mensaje>
-etc.
-Verifique su funcionamiento con al menos una entrada de cada tipo.
+/*Devuelve un mensaje con un titulo de evento.
+Parametros: 
+Mensaje(string): mensaje que describe evento
+NivelSeveridad(int): numero que describe gravedad del evento.
+Retorna: mensaje con formato: [titulo] <Mensaje>
 */
 
 void logMessage(string mensaje, int NivelSeveridad){
@@ -37,26 +32,17 @@ void logMessage(string mensaje, int NivelSeveridad){
     else{return;}
 }
 
-/*b. En un proyecto usualmente se solicitan cambios para mejorar o agregar funcionalidad. Para el caso del código del 
-ejercicio 2.a, se requiere tener la habilidad de agregar mensajes personalizados para registrar otro tipo de eventos. 
-Los requisitos son los siguientes:
-i. Todos los nuevos mensajes deben ser invocados con logMessage.
-ii. Se requiere la posibilidad de registrar errores, indicando el mensaje de error, el archivo y la línea de código 
-donde sucedió este error, es decir:
+//Parte b
 
-logMessage(String Mensage_de_Error, String Archivo, Int Línea_de_Código)
+//i.
 
-iii. Se requiere la posibilidad de registrar un mensaje de “Acceso de Usuario” a la
-aplicación. Este mensaje debe tener una leyenda nueva: [SECURITY]. La misma
-debe ser ingresada de la siguiente manera:
-
-logMessage(String Mensaje_De_Acceso, String Nombre_de_Usuario)
-
-Los mensajes de acceso pueden ser: Access Granted, Access Denied, etc.
-iv. Se requiere un código que pruebe que el sistema verifica la funcionalidad
-requerida y que además demuestre que puede capturar un error en runtime,
-crear una entrada en el log y después detener la ejecución del programa y salir
-del mismo con un código de error (return 1)*/
+/*Devuelve un mensaje de error personalizado con informacion del archivo y la linea donde ocurre el error. 
+Parametros: 
+Mensaje(string): mensaje que describe error
+archivo(string): archivo donde ocurre evento.
+Linea(int): linea donde ocurre error.
+Retorna: mensaje de error, archivo donde ocurre, linea donde ocurre
+*/
 
 void logMessage(string mensaje, string archivo, int linea_codigo){
     ofstream logFile("log.txt", ios::app);
@@ -73,6 +59,13 @@ void logMessage(string mensaje, string archivo, int linea_codigo){
     else{return;}
 }   
 
+//ii.
+/*
+/*Genera mensaje de acceso con del usuario que quiere dicho acceso
+Parametros: mensaje de acceso (string)
+Nombre_de_usuario(string): nombre del usuario a ingresar
+Retorna: mensaje y nombre del usuario */
+
 void logMessage(string mensaje_de_acceso, string nombre_de_usuario){
     
     ofstream logFile("log.txt", ios::app);
@@ -82,7 +75,12 @@ void logMessage(string mensaje_de_acceso, string nombre_de_usuario){
 
 }
 
-//Ejercicio2 parte4:
+//iii.
+/*Se captura un error en runtime para demostrar
+Parametros: -
+Retorna: conclusión de que es un error una raiz negativa.
+*/
+
 int captura_error(){ 
     try{
         int x = -100;
@@ -114,6 +112,8 @@ int main(){
 
     //Ejercicio b, parte2:
     logMessage("Soy un string de acceso de usuario", "ines_mestres");
+
+    //Demostración de que captura error en runtime: 
     captura_error();
     return 0;
 }
