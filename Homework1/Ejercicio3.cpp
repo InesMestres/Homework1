@@ -118,12 +118,6 @@ void erase(nodo*& head, int posicion){
     }
 
 
-
-
-
-
-
-
 void print_list(nodo*& head){
     if(head == nullptr){
         cout<<"lista vacia" << endl;
